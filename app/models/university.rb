@@ -1,3 +1,3 @@
 class University < ApplicationRecord
-  belongs_to :Country
+  belongs_to :country
 end

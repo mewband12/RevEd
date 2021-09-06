@@ -1,4 +1,4 @@
 class Mod < ApplicationRecord
-  belongs_to :deparment
+  belongs_to :department
   belongs_to :university
 end

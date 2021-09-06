@@ -1,5 +1,5 @@
 class ModsController < ApplicationController
   def show
-    @module = Module.find(params[:id])
+    @module = Mod.find(params[:id])
   end
 end
