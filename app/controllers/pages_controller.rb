@@ -3,5 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @modules = Mod.all
+    # render json: @modules
   end
 end
