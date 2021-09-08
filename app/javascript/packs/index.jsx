@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   ReactDom.render(
     <App />,
-    document.body.appendChild(document.createElement("div"))
+    // document.body.appendChild(document.createElement("div"))
+    document.getElementById('root')
   )
 });
 

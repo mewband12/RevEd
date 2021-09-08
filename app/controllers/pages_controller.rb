@@ -4,5 +4,6 @@ class PagesController < ApplicationController
   def home
     @modules = Mod.all
     # render json: @modules
+    @universities = University.all
   end
 end
