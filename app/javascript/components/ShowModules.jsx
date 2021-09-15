@@ -1,47 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import axios from 'axios'
 
 const showModules = () => {
-  const [items, setItems] = useState();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [universities, setUniversities] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(false);
 
   useEffect(() => {
-    async function fetchStuff() {
-      await axios.get("/api/v1/universities")
-     .then(res => setItems(res.data))
-     .catch(
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        setLoading(false)
-        setError(true)
-        console.log(error)
-      }
-    )
-    }
-    // fetchStuff().then(setLoading(false))
-    fetchStuff()
-    // console.log(items)
-  }, [])
-  console.log(items)
-  if (error) {
-    return <div>Error</div>;
-  } else if (loading) {
-    console.log(items)
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <ul>
-        {items.map((item) =>
-          <li key={item.id}>
-            {item}
-          </li>
-        )}
-      </ul>
-    );
-  }
+    axios.get("/api/v1/universities.json")
+    .then( res => {
+      setUniversities(res.data)
+      // console.log(res)
+    })
+     .catch(res => console.log(res))
+  }, [universities.length])
+
+  const list = universities.map (item => {
+    // console.log(item.name)
+    return (<li key={item.name}>{item.name}</li>)
+  })
+
+  return (
+    <Fragment>
+      <div> asd </div>
+      <ul>{list}</ul>
+    </Fragment>
+  )
+
 }
 
 export default showModules
