@@ -37,6 +37,7 @@ const theme = createTheme();
 
 export default function Album() {
   const [universities, setUniversities] = useState([]);
+  const [reviewcounts, setReviewcounts] = useState([]);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(false);
 
@@ -49,12 +50,21 @@ export default function Album() {
       .catch(res => console.log(res))
   }, [universities.length])
 
+  useEffect(() => {
+    axios.get("/api/v1/reviewcounts.json")
+      .then(res => {
+        setReviewcounts(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+  }, [reviewcounts.length])
+
   const list = universities.map(item => {
     // console.log(item.name)
     return (<li key={item.name}>{item.name}</li>)
   })
 
-  // console.log(universities[0].country_id)
+  console.log(reviewcounts["Warwick University"])
 
 
 
@@ -127,8 +137,7 @@ export default function Album() {
                       Heading {card.name}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the
-                      content.
+                      Reviews: {reviewcounts[card.name]}
                     </Typography>
                   </CardContent>
                   <CardActions>
