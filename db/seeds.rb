@@ -34,35 +34,47 @@ first_user = User.first
 end
 first_country = Country.first
 
-  10.times do
-  university = University.new name:"Warwick University",
+UNIVERSITIES = ["Warwick University", "Bristol", "Imperial College London", "Cambridge University", "Oxford University", "Birmingham University", "University of Exeter"]
+  UNIVERSITIES.each do |uni|
+  university = University.new name: uni,
                               country: first_country
   university.save!
   end
 
-first_university = University.first
+DEPARTMENTS = ["Mathematics", "Economics", "Computer Science", "Arts", "Law", "Engineering", "Business"]
 
-10.times do
-  department = Department.new name:"Mathematics",
+DEPARTMENTS.each do |dep|
+  department = Department.new name: dep,
                               description:"best department :)",
-                              university: first_university
+                              university: University.all.sample
   department.save!
 end
 first_department = Department.first
-10.times do
-  mod = Mod.new name: "Fluid Dyanamics",
+MODULE_MATHS = ["Fluid Dyanamics", "Mathematics of Machine Learning", "Physics of Weather and the Environment", "Complex Analysis"]
+MODULE_COMPSCIS = ["Software Engineering", "Machine Learning", "Game Design", "Computer vision"]
+MODULE_MATHS.each do |mod|
+  mod = Mod.new name: mod,
                 description: "Module about fluids",
-                year: 2012,
+                year: 3,
                 department: first_department,
-                university: first_university
+                university: University.all.sample
+  mod.save!
+end
+
+MODULE_COMPSCIS.each do |mod|
+  mod = Mod.new name: mod,
+                description: "Module about fluids",
+                year: 3,
+                department: Department.all.sample,
+                university: University.all.sample
   mod.save!
 end
 first_module = Mod.first
-10.times do
+100.times do
   review = Review.new rating: 4,
                       review: "bad module",
                       grade: "1st class honours",
-                      mod: first_module,
+                      mod: Mod.all.sample,
                       user: first_user
   review.save!
 end
@@ -85,4 +97,7 @@ first_post = Post.first
                         post: first_post
   comment.save!
 end
+
+
+
 puts "🌲 Seed complete ... #{User.count} Users / #{Country.count} country / University #{University.count} / Department #{Department.count}/ module #{Mod.count}/ review #{Review.count}/ discussion #{Discussion.count}/ post #{Post.count} / comment #{Comment.count}"
