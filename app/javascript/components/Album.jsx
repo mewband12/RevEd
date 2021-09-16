@@ -54,11 +54,11 @@ export default function Album() {
     return (<li key={item.name}>{item.name}</li>)
   })
 
-  console.log(universities[0])
-  // const first = universities[0]
+  // console.log(universities[0].country_id)
 
 
-  console.log(universities[0], "test")
+
+  // console.log(universities[0], "test")
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
