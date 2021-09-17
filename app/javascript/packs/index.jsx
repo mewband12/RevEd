@@ -2,7 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import ShowModules from "../components/ShowModules";
 import App from "../components/App";
-import Album from "../components/Album"
+import Album from "../components/cardlists/Album"
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDom.render(
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ReactDom.render(
     <Album />,
     // document.body.appendChild(document.createElement("div"))
-    document.getElementById('root3')
+    document.getElementById('Album')
   )
 });
 

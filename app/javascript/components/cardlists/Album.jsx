@@ -16,6 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import { Avatar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright() {
@@ -119,21 +120,22 @@ export default function Album() {
           <Grid container spacing={4}>
             {universities.slice(0, 6).map((card) => (
               <Grid item key={card.id} xs={12} sm={6} md={4}>
-                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                  <CardMedia component="img" alt="green iguana" height="140" image= {Test[Math.floor(Math.random()*Test.length)]} />
+                {/* <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}> */}
+                  {/* <CardMedia component="img" alt="green iguana" height="140" image= {Test[Math.floor(Math.random()*Test.length)]} /> */}
+                <Avatar alt="Remy Sharp" sx={{ width: 200, height: 200 }} style={{ margin: "0 auto" }} src={Test[Math.floor(Math.random() * Test.length)]}></Avatar>
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                  <Typography gutterBottom variant="h5" component="h2" style={{ textAlign: "center", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
                       {card.name}
-                    </Typography>
-                    <Typography>
+                  </Typography>
+                  <Typography style={{ textAlign: "center" }}>
                       Reviews: {reviewcounts[card.name]}
                     </Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                <CardActions>
+                  <Button size="small" style={{ margin: "0 auto" }}>View</Button>
+                    {/* <Button size="small">Edit</Button> */}
                   </CardActions>
-                </Card>
+                {/* </Card> */}
               </Grid>
             ))}
           </Grid>
