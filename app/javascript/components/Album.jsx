@@ -65,8 +65,7 @@ export default function Album() {
   })
 
   console.log(reviewcounts["Warwick University"])
-
-
+  const Test = ["https://www.timeshighereducation.com/sites/default/files/styles/the_breaking_news_image_style/public/Pictures/web/y/d/t/the-university-of-warwick-logo-2015.jpg?itok=VQ2a0l-F", "https://www.universitytranscriptions.co.uk/wp-content/uploads/University-of-Bristol.png"]
 
   // console.log(universities[0], "test")
   return (
@@ -118,23 +117,13 @@ export default function Album() {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {universities.map((card) => (
+            {universities.slice(0, 6).map((card) => (
               <Grid item key={card.id} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
+                <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                  <CardMedia component="img" alt="green iguana" height="140" image= {Test[Math.floor(Math.random()*Test.length)]} />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading {card.name}
+                      {card.name}
                     </Typography>
                     <Typography>
                       Reviews: {reviewcounts[card.name]}
@@ -170,3 +159,16 @@ export default function Album() {
   );
 }
 
+// export default function ImgMediaCard() {
+//   return (
+//   <Card sx={{ maxWidth: 345 }}>
+//     <CardMedia component="img" alt="green iguana" height="140" image="/static/images/cards/contemplative-reptile.jpg" />
+//       <CardContent>
+//         <Typography gutterBottom variant="h5" component="div"> Lizard </Typography>
+//         <Typography variant="body2" color="text.secondary"> Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica </Typography>
+//       </CardContent>
+//       <CardActions>
+//         <Button size="small">Share</Button>
+//         <Button size="small">Learn More</Button>
+//       </CardActions>
+//     </Card>); }
