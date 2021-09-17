@@ -10,7 +10,7 @@ const showModules = () => {
     axios.get("/api/v1/universities.json")
     .then( res => {
       setUniversities(res.data)
-      // console.log(res)
+      console.log(res)
     })
      .catch(res => console.log(res))
   }, [universities.length])
