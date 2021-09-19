@@ -1,8 +1,12 @@
-class Api::V1::UniversitiesController < ApplicationController
+class Api::V1::ReviewcountsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   def index
     @universities = University.all
-    render json: @universities
+    unireviews = {}
+    @universities.each do |uni|
+      unireviews[uni.name] = count_reviews(uni)
+    end
+    render json: unireviews
   end
 
   def show
