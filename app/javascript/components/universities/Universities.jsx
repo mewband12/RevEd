@@ -15,28 +15,16 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import { Avatar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import { Link } from 'react-router-dom'
 
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
 
-export default function Album() {
+const Universities = () => {
   const [universities, setUniversities] = useState([]);
   const [reviewcounts, setReviewcounts] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -112,7 +100,11 @@ export default function Album() {
                     </Typography>
                   </CardContent>
                 <CardActions>
-                  <Button size="small" style={{ margin: "0 auto" }}>View</Button>
+                  <Button size="small" style={{ margin: "0 auto" }}>
+                    <Link to='/universities/1' style={{ textDecoration: 'none' }}> View </Link>
+                  </Button>
+
+                    {/* <Link href="/universities/1" underline="none">View</Link> */}
                     {/* <Button size="small">Edit</Button> */}
                   </CardActions>
                 {/* </Card> */}
@@ -144,23 +136,10 @@ export default function Album() {
         >
           Something here to give the footer a purpose!
         </Typography>
-        <Copyright />
       </Box>
       {/* End footer */}
     </ThemeProvider>
   );
 }
 
-// export default function ImgMediaCard() {
-//   return (
-//   <Card sx={{ maxWidth: 345 }}>
-//     <CardMedia component="img" alt="green iguana" height="140" image="/static/images/cards/contemplative-reptile.jpg" />
-//       <CardContent>
-//         <Typography gutterBottom variant="h5" component="div"> Lizard </Typography>
-//         <Typography variant="body2" color="text.secondary"> Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica </Typography>
-//       </CardContent>
-//       <CardActions>
-//         <Button size="small">Share</Button>
-//         <Button size="small">Learn More</Button>
-//       </CardActions>
-//     </Card>); }
+export default Universities
