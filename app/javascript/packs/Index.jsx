@@ -1,19 +1,27 @@
 import React from "react";
-import ReactDom from "react-dom";
-import ShowModules from "../components/ShowModules";
+import { render } from "react-dom";
 import App from "../components/App";
-import Universities from "../components/universities/Universities";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import ReactDom from "react-dom";
+// import ShowModules from "../components/ShowModules";
+// import Universities from "../components/universities/Universities";
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+document.addEventListener("DOMContentLoaded", () => {
+  render(
+    <App />,
+    // document.body.appendChild(document.createElement("div"))
+    document.getElementById('root')
+  )
+});
 
 // document.addEventListener("DOMContentLoaded", () => {
-  ReactDom.render(
-    <Router >,
-      <Route path ="/" component={App}/>
-      {/* <App /> */}
-    </Router>,
-    document.body.appendChild(document.createElement('div')),
-    // document.getElementById('root')
-  )
+  // ReactDom.render(
+  //   <Router >,
+  //     <Route path ="/" component={App}/>
+  //     {/* <App /> */}
+  //   </Router>,
+  //   // document.body.appendChild(document.createElement('div')),
+  //   document.getElementById('root'),
+  // )
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -21,7 +29,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 //   </React.StrictMode>,
 //   document.getElementById('root')
 // );
-// });
 
 
 // document.addEventListener("DOMContentLoaded", () => {
@@ -32,13 +39,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 //   )
 // });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   ReactDom.render(
-//     <App />,
-//     // document.body.appendChild(document.createElement("div"))
-//     document.getElementById('root')
-//   )
-// });
+
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   ReactDom.render(
