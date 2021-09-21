@@ -6,7 +6,7 @@ class Api::V1::UniversitiesController < ApplicationController
   end
 
   def show
-    @university = Post.find(params[:id])
+    @university = University.find(params[:id])
     render json: @university
   end
 

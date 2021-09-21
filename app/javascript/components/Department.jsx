@@ -5,12 +5,13 @@ import University from './university/University';
 
 // const theme = createTheme();
 
-const Home = () => {
+const Department = (props) => {
+  const id = props.match.params.id
   return (
     <div>
-      <University/>
+      <University id ={id}/>
     </div>
   )
 }
 
-export default Home
+export default Department

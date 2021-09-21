@@ -19,7 +19,7 @@ import Container from '@mui/material/Container';
 import { Avatar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-// import University from '../university/University';
+import University from './University';
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
@@ -50,10 +50,11 @@ const Universities = () => {
 
   const list = universities.map(item => {
     // console.log(item.name)
-    return (<li key={item.name}>{item.name}</li>)
+    // return (<li key={item.name}>{item.name}</li>)
+    return (< University key={item}></University>)
   })
 
-  console.log(reviewcounts["Warwick University"])
+  // console.log(reviewcounts["Warwick University"])
   const Test = ["https://www.timeshighereducation.com/sites/default/files/styles/the_breaking_news_image_style/public/Pictures/web/y/d/t/the-university-of-warwick-logo-2015.jpg?itok=VQ2a0l-F", "https://www.universitytranscriptions.co.uk/wp-content/uploads/University-of-Bristol.png"]
 
   // console.log(universities[0], "test")
@@ -86,6 +87,7 @@ const Universities = () => {
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
+
             {universities.slice(0, 6).map((card) => (
               <Grid item key={card.id} xs={12} sm={6} md={4}>
                 {/* <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}> */}
@@ -96,13 +98,13 @@ const Universities = () => {
                       {card.name}
                   </Typography>
                   <Typography style={{ textAlign: "center" }}>
-                      Reviews: {reviewcounts[card.name]}
+                      Reviews: {reviewcounts[card.id]}
                     </Typography>
                   </CardContent>
                 <CardActions>
                   <Button size="small" style={{ margin: "0 auto" }}>
-                    <a href={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> ahref </a>
-                    <Link to={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> View </Link>
+                    <a href={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> View </a>
+                    {/* <Link to={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> View </Link> */}
                   </Button>
 
                     {/* <Link href="/universities/1" underline="none">View</Link> */}

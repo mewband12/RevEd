@@ -4,7 +4,7 @@ class Api::V1::ReviewcountsController < ApplicationController
     @universities = University.all
     unireviews = {}
     @universities.each do |uni|
-      unireviews[uni.name] = count_reviews(uni)
+      unireviews[uni.id] = count_reviews(uni)
     end
     render json: unireviews
   end

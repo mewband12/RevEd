@@ -6,7 +6,8 @@ import Universities from './universities/Universities'
 
 // const theme = createTheme();
 
-const Home = () => {
+const Home = (props) => {
+  console.log(props)
   return (
     <div>
       <Universities/>

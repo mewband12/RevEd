@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,7 +17,17 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Grid from '@material-ui/core/Grid';
+import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
+
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+// import Avatar from '@mui/material/Avatar';
+// import Typography from '@mui/material/Typography';
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,23 +40,49 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function University(props) {
+export default function University(id) {
   const [expanded, setExpanded] = React.useState(false);
   const [ University, setUniversity ] = useState({});
+  const [ Departments, setDepartments ] = useState([]);
+  const [reviewdepcounts, setReviewcounts] = useState([]);
 
   useEffect(()=>{
+    // console.log(id, "mew")
+    axios.get(`/api/v1/universities/${id.id}`)
+      .then(res => {
+        setUniversity(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
     // api/v1/universities/1
     // universities/1
-    console.log(props)
 
-  }, [])
+  }, [[ University.length]])
+
+  useEffect(() => {
+    axios.get("/api/v1/departments.json")
+      .then(res => {
+        setDepartments(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+  }, [Departments.length])
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  useEffect(() => {
+    axios.get("/api/v1/reviewdepcounts.json")
+      .then(res => {
+        setReviewcounts(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+  }, [reviewdepcounts.length])
+  // console.log(Departments)
   return (
-
+    <div>
     <Grid
       container
       spacing={0}
@@ -54,8 +91,8 @@ export default function University(props) {
       justifyContent="center"
       style={{ minHeight: '100vh' }}
     >
-      <Grid item xs={3}>
-        <Container sx={{ py: 10 }} maxWidth="md">
+        <Grid item xs={12} sm={6} md={4}>
+        <Container sx={{ py: 2 }} maxWidth="md">
           <Card sx={{ maxWidth: 345 }} >
             <CardHeader
               avatar={
@@ -68,7 +105,7 @@ export default function University(props) {
                   <MoreVertIcon />
                 </IconButton>
               }
-              title="Shrimp and Chorizo Paella"
+              title= {University.name}
               subheader="September 14, 2016"
             />
             <CardMedia
@@ -80,6 +117,7 @@ export default function University(props) {
             <CardContent>
               <Typography variant="body2" color="text.secondary">
                 <a href="/"> home </a>
+                {University.name}test
                 This impressive paella is a perfect party dish and a fun meal to cook
                 together with your guests. Add 1 cup of frozen peas along with the mussels,
                 if you like.
@@ -132,7 +170,62 @@ export default function University(props) {
             </Collapse>
           </Card>
         </Container>
+          <Box
+            sx={{
+              pt: 2,
+              pb: 2,
+            }}
+          >
+            <Container maxWidth="sm" >
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                {Departments.length} departments
+              </Typography>
+            </Container>
+          </Box>
       </Grid>
     </Grid>
+
+
+
+    <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+    <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
+          {Departments.slice(0, Departments.length).map((department) => (
+      <ListItem key = {department.id} alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </ListItemAvatar>
+        <ListItemText
+          primary={department.name}
+          secondary={
+            <React.Fragment>
+              <Typography
+                sx={{ display: 'inline' }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+                {department.description}
+              </Typography>
+              " — reviews:" {reviewdepcounts[department.id]}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+      ))}
+          {/* <Divider variant="inset" component="li" /> */}
+    </List>
+    </Grid>
+    </div>
   );
 }

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :universities, only: [ :index, :show ]
       resources :reviewcounts, only: [ :index, :show ]
+      resources :reviewdepcounts, only: [:index, :show]
+      resources :departments, only: [:index, :show ]
     end
   end
 

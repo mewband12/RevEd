@@ -52,10 +52,11 @@ end
 first_department = Department.first
 MODULE_MATHS = ["Fluid Dyanamics", "Mathematics of Machine Learning", "Physics of Weather and the Environment", "Complex Analysis"]
 MODULE_COMPSCIS = ["Software Engineering", "Machine Learning", "Game Design", "Computer vision"]
+Year = [1,2,3,4]
 MODULE_MATHS.each do |mod|
   mod = Mod.new name: mod,
                 description: "Module about fluids",
-                year: 3,
+                year: Year.sample,
                 department: first_department,
                 university: University.all.sample
   mod.save!
@@ -64,11 +65,12 @@ end
 MODULE_COMPSCIS.each do |mod|
   mod = Mod.new name: mod,
                 description: "Module about fluids",
-                year: 3,
+                year: Year.sample,
                 department: Department.all.sample,
                 university: University.all.sample
   mod.save!
 end
+
 first_module = Mod.first
 100.times do
   review = Review.new rating: 4,
