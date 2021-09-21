@@ -102,7 +102,7 @@ const Universities = () => {
                 <CardActions>
                   <Button size="small" style={{ margin: "0 auto" }}>
                     <a href={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> ahref </a>
-                    <Link to={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> View </Link>
+                    {/* <Link to={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> View </Link> */}
                   </Button>
 
                     {/* <Link href="/universities/1" underline="none">View</Link> */}
