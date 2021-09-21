@@ -1,7 +1,6 @@
 // import * as React from 'react';
 import React, { useEffect, useState } from 'react'
-import Universities from './universities/Universities'
-// import University from './university/University';
+import University from './university/University';
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // const theme = createTheme();
@@ -9,7 +8,7 @@ import Universities from './universities/Universities'
 const Home = () => {
   return (
     <div>
-      <Universities/>
+      <University/>
     </div>
   )
 }
