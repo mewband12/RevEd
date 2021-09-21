@@ -1,15 +1,22 @@
 import React from "react";
-import { render } from "react-dom";
-import App from "../components/App";
-// import ReactDom from "react-dom";
-// import ShowModules from "../components/ShowModules";
-// import Universities from "../components/universities/Universities";
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ReactDom from "react-dom";
+import ShowModules from "../components/ShowModules";
+import Home from "../components/Home";
+import Department from "../components/Department"
+
 document.addEventListener("DOMContentLoaded", () => {
-  render(
-    <App />,
+  ReactDom.render(
+    <Home />,
     // document.body.appendChild(document.createElement("div"))
-    document.getElementById('root')
+    document.getElementById('Home')
+  )
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  ReactDom.render(
+    <Department />,
+    // document.body.appendChild(document.createElement("div"))
+    document.getElementById('Department')
   )
 });
 
