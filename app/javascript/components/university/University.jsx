@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -16,6 +16,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,8 +29,16 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function University() {
+export default function University(props) {
   const [expanded, setExpanded] = React.useState(false);
+  const [ University, setUniversity ] = useState({});
+
+  useEffect(()=>{
+    // api/v1/universities/1
+    // universities/1
+    console.log(props)
+
+  }, [])
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
