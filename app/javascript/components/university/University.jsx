@@ -206,7 +206,8 @@ export default function University(id) {
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary={department.name}
+
+          primary={ <a href={`/departments/${department.id}`}> {department.name} </a>}
           secondary={
             <React.Fragment>
               <Typography

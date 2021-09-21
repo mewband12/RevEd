@@ -4,4 +4,9 @@ class Api::V1::DepartmentsController < ApplicationController
     @departments = Department.all
     render json: @departments
   end
+
+  def show
+    @department = Department.find(params[:id])
+    render json: @department
+  end
 end
