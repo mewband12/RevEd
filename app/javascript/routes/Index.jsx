@@ -5,7 +5,7 @@ import Universities from "../components/universities/Universities";
 import Department from "../components/Department";
 
 export default (
-  <Router>
+  <Router history>
     <Switch>
       <Route path="/" exact component={Home} />
       {/* <Route path ="universities" exact component = {Universities} /> */}
