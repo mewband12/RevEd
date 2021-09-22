@@ -82,119 +82,20 @@ export default function University(id) {
     setExpanded(!expanded);
   };
 
-  console.log(Modules, University)
+  // console.log(Modules, University)
 
   return (
     <div>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: '100vh' }}
-      >
-        <Grid item xs={12} sm={6} md={4}>
-          <Container sx={{ py: 2 }} maxWidth="md">
-            <Card sx={{ maxWidth: 345 }} >
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    R
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title={University.name}
-                subheader="September 14, 2016"
-              />
-              <CardMedia
-                component="img"
-                height="194"
-                image="https://source.unsplash.com/random"
-                alt="Paella dish"
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  <a href="/"> home </a>
-                  {University.name}test
-                  This impressive paella is a perfect party dish and a fun meal to cook
-                  together with your guests. Add 1 cup of frozen peas along with the mussels,
-                  if you like.
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton>
-                <ExpandMore
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
-                <CardContent>
-                  <Typography paragraph>Method:</Typography>
-                  <Typography paragraph>
-                    Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-                    aside for 10 minutes.
-                  </Typography>
-                  <Typography paragraph>
-                    Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-                    medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-                    occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-                    large plate and set aside, leaving chicken and chorizo in the pan. Add
-                    pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-                    stirring often until thickened and fragrant, about 10 minutes. Add
-                    saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-                  </Typography>
-                  <Typography paragraph>
-                    Add rice and stir very gently to distribute. Top with artichokes and
-                    peppers, and cook without stirring, until most of the liquid is absorbed,
-                    15 to 18 minutes. Reduce heat to medium-low, add reserved shrimp and
-                    mussels, tucking them down into the rice, and cook again without
-                    stirring, until mussels have opened and rice is just tender, 5 to 7
-                    minutes more. (Discard any mussels that don’t open.)
-                  </Typography>
-                  <Typography>
-                    Set aside off of the heat to let rest for 10 minutes, and then serve.
-                  </Typography>
-                </CardContent>
-              </Collapse>
-            </Card>
-          </Container>
-          <Box
-            sx={{
-              pt: 2,
-              pb: 2,
-            }}
-          >
-            <Container maxWidth="sm" >
-              <Typography
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                departments
-              </Typography>
-            </Container>
-          </Box>
-        </Grid>
-      </Grid>
-
-
-
+      <Container maxWidth="sm" >
+        <Typography
+          variant="h5"
+          align="center"
+          color="text.primary"
+          gutterBottom
+        >
+          {Department.name}, {University.name}
+        </Typography>
+      </Container>
       <Grid
         container
         spacing={0}

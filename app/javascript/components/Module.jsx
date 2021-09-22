@@ -5,14 +5,16 @@ import Department from './department/Department';
 
 // const theme = createTheme();
 
-const Review = (props) => {
-  console.log(props)
-  const id = props.match.params.id
+const Module = (props) => {
+  // console.log(props)
+  var uni = require('./Department')
+  console.log(uni)
+  const id_dep = props.match.params.id
   return (
     <div>
-      <Department id={id} />
+      <Department id={id_dep} />
     </div>
   )
 }
 
-export default Review
+export default Module

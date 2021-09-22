@@ -6,11 +6,12 @@ import University from './university/University';
 // const theme = createTheme();
 
 const Department = (props) => {
-  console.log(props)
-  const id = props.match.params.id
+  // console.log(props)
+  // console.log(this.id)
+  const id_uni = props.match.params.id
   return (
     <div>
-      <University id ={id}/>
+      <University id ={id_uni}/>
     </div>
   )
 }
