@@ -6,6 +6,7 @@ import Department from "../components/Department";
 import Module from "../components/Module"
 import Review from "../components/Review"
 
+
 export default (
   <Router history>
     <Switch>
