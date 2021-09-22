@@ -122,6 +122,8 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     nio4r (2.5.8)
+    nokogiri (1.12.4-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -245,6 +247,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
@@ -257,6 +260,7 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  nokogiri
   pg (~> 1.1)
   pry-byebug
   pry-rails
@@ -280,4 +284,4 @@ RUBY VERSION
    ruby 2.7.3p183
 
 BUNDLED WITH
-   2.2.26
+   2.2.27
