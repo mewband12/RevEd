@@ -46,6 +46,8 @@ export default function University(id) {
   const [ Departments, setDepartments ] = useState([]);
   const [reviewdepcounts, setReviewcounts] = useState([]);
 
+  // this.id.history.push("/departments/:id", {state: id.id})
+
   useEffect(()=>{
     // console.log(id, "mew")
     axios.get(`/api/v1/universities/${id.id}`)
@@ -206,7 +208,8 @@ export default function University(id) {
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </ListItemAvatar>
         <ListItemText
-          primary={department.name}
+
+          primary={ <a href={`/departments/${department.id}`}> {department.name} </a>}
           secondary={
             <React.Fragment>
               <Typography

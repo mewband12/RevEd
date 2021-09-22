@@ -1,19 +1,20 @@
 // import * as React from 'react';
 import React, { useEffect, useState } from 'react'
-import University from './university/University';
+import Department from './department/Department';
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // const theme = createTheme();
 
-const Department = (props) => {
+const Module = (props) => {
   // console.log(props)
-  // console.log(this.id)
-  const id_uni = props.match.params.id
+  var uni = require('./Department')
+  console.log(uni)
+  const id_dep = props.match.params.id
   return (
     <div>
-      <University id ={id_uni}/>
+      <Department id={id_dep} />
     </div>
   )
 }
 
-export default Department
+export default Module

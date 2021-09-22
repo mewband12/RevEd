@@ -1,24 +1,15 @@
 import React from "react";
-import ReactDom from "react-dom";
-import ShowModules from "../components/ShowModules";
-import Home from "../components/Home";
-import Department from "../components/Department"
+import { render } from "react-dom";
+import App from "../components/App";
 
 document.addEventListener("DOMContentLoaded", () => {
-  ReactDom.render(
-    <Home />,
+  render(
+    <App />,
     // document.body.appendChild(document.createElement("div"))
-    document.getElementById('Home')
+    document.getElementById('root')
   )
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  ReactDom.render(
-    <Department />,
-    // document.body.appendChild(document.createElement("div"))
-    document.getElementById('Department')
-  )
-});
 
 // document.addEventListener("DOMContentLoaded", () => {
   // ReactDom.render(
