@@ -209,7 +209,15 @@ export default function University(id) {
         </ListItemAvatar>
         <ListItemText
 
-          primary={ <a href={`/departments/${department.id}`}> {department.name} </a>}
+          primary={
+              <Link to={{
+                pathname: `/departments/${department.id}`,
+                state: {
+                  uni: id
+                }
+                }}>
+          {department.name}
+          </Link>}
           secondary={
             <React.Fragment>
               <Typography
@@ -221,6 +229,12 @@ export default function University(id) {
                 {department.description}
               </Typography>
               " — reviews:" {reviewdepcounts[department.id]}
+              <Link to={{
+                pathname: `/departments/${department.id}`,
+                state: {
+                  uni: id
+                }
+                }}>Create Idea</Link>
             </React.Fragment>
           }
         />

@@ -40,7 +40,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function University(id) {
+export default function University(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [University, setUniversity] = useState({});
   const [Department, setDepartment] = useState([]);
@@ -48,8 +48,9 @@ export default function University(id) {
   // const [reviewdepcounts, setReviewcounts] = useState([]);
 
   useEffect(() => {
-    // console.log(id, "mew")
-    axios.get(`/api/v1/universities/${id.id}`)
+    // console.log(id_dep.id_dep, id_dep.id_uni)
+    // console.log(id_uni)
+    axios.get(`/api/v1/universities/${props.id_uni}`)
       .then(res => {
         setUniversity(res.data)
         // console.log(res)
@@ -61,7 +62,7 @@ export default function University(id) {
   }, [[University.length]])
 
   useEffect(() => {
-    axios.get(`/api/v1/departments/${id.id}`)
+    axios.get(`/api/v1/departments/${props.id_dep}`)
       .then(res => {
         setDepartment(res.data)
         // console.log(res)
