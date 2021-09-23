@@ -8,6 +8,7 @@ import Universities from './universities/Universities'
 
 const Home = (props) => {
   console.log(props)
+  console.log('nongKK')
   return (
     <div>
       <Universities/>

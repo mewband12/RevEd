@@ -20,6 +20,7 @@ import { Avatar } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import University from './University';
+import Intro from '../Intro';
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const theme = createTheme();
@@ -61,7 +62,7 @@ const Universities = () => {
   return (
     <ThemeProvider theme={theme} >
       <CssBaseline/>
-
+      
       <main>
         {/* Hero unit */}
         <Box
@@ -71,6 +72,9 @@ const Universities = () => {
             bgcolor: 'text.disabled'
           }}
         >
+          <Container maxWidth="sm">
+            <Intro/>
+          </Container> 
           <Container maxWidth="sm" >
             <Typography
               component="h2"
@@ -79,7 +83,7 @@ const Universities = () => {
               color="text.primary"
               gutterBottom
             >
-              Participated Universities
+              Participated Universitiessssssssss
             </Typography>
           </Container>
         </Box>
