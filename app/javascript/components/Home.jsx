@@ -11,7 +11,7 @@ const Home = (props) => {
   console.log('nongKK')
   return (
     <div>
-      <Universities/>
+      {/* <Universities/> */}
     </div>
   )
 }

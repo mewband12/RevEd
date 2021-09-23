@@ -1,12 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
 import App from "../components/App";
+import Intro from "../components/Intro";
 
 document.addEventListener("DOMContentLoaded", () => {
   render(
-    <App />,
+    <Intro/>,
     // document.body.appendChild(document.createElement("div"))
-    document.getElementById('root')
+    document.getElementById('root2')
   )
 });
 

@@ -102,7 +102,7 @@ const Universities = () => {
                       {card.name}
                   </Typography>
                   <Typography style={{ textAlign: "center" }}>
-                      Reviews: {reviewcounts[card.id]}
+                      Reviewszzz: {reviewcounts[card.id]}
                     </Typography>
                   </CardContent>
                 <CardActions>
