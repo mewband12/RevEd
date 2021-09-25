@@ -70,6 +70,18 @@ export default function University(id) {
       .catch(res => console.log(res))
   }, [Departments.length])
 
+  function department_filtered(uni_id) {
+    var arr = []
+    for (var i = 0; i < Departments.length; i++) {
+      if (Departments[i]["university_id"] == uni_id) {
+        arr.push(Departments[i])
+      }
+    }
+    return arr
+  }
+
+  // console.log(department_filtered(2))
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -185,7 +197,7 @@ export default function University(id) {
                 color="text.primary"
                 gutterBottom
               >
-                {Departments.length} departments
+                {department_filtered(id.id).length} departments
               </Typography>
             </Container>
           </Box>
@@ -202,7 +214,7 @@ export default function University(id) {
       justifyContent="center"
     >
     <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
-          {Departments.slice(0, Departments.length).map((department) => (
+          {department_filtered(id.id).slice(0, Departments.length).map((department) => (
       <ListItem key = {department.id} alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />

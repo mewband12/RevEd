@@ -40,7 +40,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function University(props) {
+export default function Department(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [University, setUniversity] = useState({});
   const [Department, setDepartment] = useState([]);
@@ -78,6 +78,26 @@ export default function University(props) {
       })
       .catch(res => console.log(res))
   }, [Modules.length])
+
+  function module_filtered(uni_id, dep_id) {
+    var arr = []
+    for (var i = 0; i < Modules.length; i++) {
+      if (Modules[i]["university_id"] == uni_id) {
+        arr.push(Modules[i])
+      }
+    }
+    return arr
+    // console.log(arr)
+    // var final = []
+    // for (var i = 0; i < arr.length; i++) {
+    //   if (arr[i]["department_id"] == dep_id) {
+    //     arr.push(arr[i])
+    //   }
+    // }
+    // return final
+  }
+
+  console.log(module_filtered(1,1))
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
