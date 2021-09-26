@@ -40,7 +40,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function University(props) {
+export default function Department(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [University, setUniversity] = useState({});
   const [Department, setDepartment] = useState([]);
@@ -59,7 +59,7 @@ export default function University(props) {
     // api/v1/universities/1
     // universities/1
 
-  }, [[University.length]])
+  }, [])
 
   useEffect(() => {
     axios.get(`/api/v1/departments/${props.id_dep}`)
@@ -68,7 +68,7 @@ export default function University(props) {
         // console.log(res)
       })
       .catch(res => console.log(res))
-  }, [Department.length])
+  }, [])
 
   useEffect(() => {
     axios.get(`/api/v1/mods`)
@@ -77,7 +77,20 @@ export default function University(props) {
         // console.log(res)
       })
       .catch(res => console.log(res))
-  }, [Modules.length])
+  }, [])
+
+  function module_filtered(uni_id, dep_id) {
+
+    var arr = []
+    for (var i = 0; i < Modules.length; i++) {
+      if (Modules[i]["university_id"] == uni_id && Modules[i]["department_id"] == dep_id) {
+        arr.push(Modules[i])
+      }
+    }
+    return arr
+  }
+
+  console.log(module_filtered(1,1))
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -105,7 +118,7 @@ export default function University(props) {
         justifyContent="center"
       >
         <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
-          {Modules.slice(0, Modules.length).map((department) => (
+          {module_filtered(props.id_uni, props.id_dep).slice(0, module_filtered(props.id_uni, props.id_dep).length).map((department) => (
             <ListItem key={department.id} alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />

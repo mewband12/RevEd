@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 
 const Module = (props) => {
   const location = useLocation()
+  console.log(location)
   const id_uni = location.state.uni.id
   console.log(useLocation())
   // var uni = require('./Department')

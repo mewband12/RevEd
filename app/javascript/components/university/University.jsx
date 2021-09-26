@@ -59,7 +59,7 @@ export default function University(id) {
     // api/v1/universities/1
     // universities/1
 
-  }, [[ University.length]])
+  }, [])
 
   useEffect(() => {
     axios.get("/api/v1/departments.json")
@@ -68,11 +68,7 @@ export default function University(id) {
         // console.log(res)
       })
       .catch(res => console.log(res))
-  }, [Departments.length])
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  }, [])
 
   useEffect(() => {
     axios.get("/api/v1/reviewdepcounts.json")
@@ -81,7 +77,25 @@ export default function University(id) {
         // console.log(res)
       })
       .catch(res => console.log(res))
-  }, [reviewdepcounts.length])
+  }, [])
+
+  console.log(Departments)
+  function department_filtered(uni_id) {
+    var arr = []
+    for (var i = 0; i < Departments.length; i++) {
+      if (Departments[i]["university_id"] == uni_id) {
+        arr.push(Departments[i])
+      }
+    }
+    return arr
+  }
+
+  // console.log(department_filtered(2))
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   // console.log(Departments)
   return (
     <div>
@@ -185,7 +199,7 @@ export default function University(id) {
                 color="text.primary"
                 gutterBottom
               >
-                {Departments.length} departments
+                {department_filtered(id.id).length} departments
               </Typography>
             </Container>
           </Box>
@@ -202,7 +216,7 @@ export default function University(id) {
       justifyContent="center"
     >
     <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
-          {Departments.slice(0, Departments.length).map((department) => (
+          {department_filtered(id.id).slice(0, Departments.length).map((department) => (
       <ListItem key = {department.id} alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />

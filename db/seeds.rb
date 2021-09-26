@@ -35,48 +35,84 @@ end
 first_country = Country.first
 
 UNIVERSITIES = ["Warwick University", "Bristol", "Imperial College London", "Cambridge University", "Oxford University", "Birmingham University", "University of Exeter"]
-  UNIVERSITIES.each do |uni|
-  university = University.new name: uni,
-                              country: first_country
-  university.save!
-  end
 
-DEPARTMENTS = ["Mathematics", "Economics", "Computer Science", "Arts", "Law", "Engineering", "Business"]
 
-DEPARTMENTS.each do |dep|
+UNIVERSITIES.each do |uni|
+university = University.new name: uni,
+                            country: first_country
+university.save!
+end
+
+## Lets start with Warwick University
+
+DEPARTMENTS_WARWICK = ["Mathematics", "Economics", "Computer Science", "Arts", "Law", "Engineering", "Business"]
+DEPARTMENTS_BRISTOL = ["Mathematics", "Economics", "Computer Science", "Arts", "Law", "Engineering", "Business"]
+DEPARTMENTS_WARWICK.each do |dep|
   department = Department.new name: dep,
                               description:"best department :)",
-                              university: University.all.sample
+                              university: University.first
   department.save!
 end
-first_department = Department.first
-MODULE_MATHS = ["Fluid Dyanamics", "Mathematics of Machine Learning", "Physics of Weather and the Environment", "Complex Analysis"]
-MODULE_COMPSCIS = ["Software Engineering", "Machine Learning", "Game Design", "Computer vision"]
+DEPARTMENTS_BRISTOL.each do |dep|
+  department = Department.new name: dep,
+                              description:"best department :)",
+                              university: University.second
+  department.save!
+end
+
+first_warwick_department = Department.first
+comsci_warwick_department = Department.third
+
+MODULE_MATHS_WARWICK = ["Fluid Dyanamics", "Mathematics of Machine Learning", "Physics of Weather and the Environment", "Complex Analysis"]
+MODULE_COMPSCIS_WARWICK = ["Software Engineering", "Machine Learning", "Game Design", "Computer vision"]
+MODULE_MATHS_BRISTOL = ["Fluid Dyanamics", "Mathematics of Machine Learning", "Physics of Weather and the Environment", "Complex Analysis"]
+MODULE_COMPSCIS_BRISTOL = ["Software Engineering", "Machine Learning", "Game Design", "Computer vision"]
 Year = [1,2,3,4]
-MODULE_MATHS.each do |mod|
+MODULE_MATHS_WARWICK.each do |mod|
   mod = Mod.new name: mod,
                 description: "Module about fluids",
                 year: Year.sample,
-                department: first_department,
-                university: University.all.sample
+                department: first_warwick_department,
+                university: University.first
   mod.save!
 end
 
-MODULE_COMPSCIS.each do |mod|
+MODULE_COMPSCIS_WARWICK.each do |mod|
   mod = Mod.new name: mod,
                 description: "Module about fluids",
                 year: Year.sample,
-                department: Department.all.sample,
-                university: University.all.sample
+                department: comsci_warwick_department,
+                university: University.first
+  mod.save!
+end
+
+first_bristol_department = Department.all[7]
+comsci_bristol_department = Department.all[9]
+
+MODULE_MATHS_BRISTOL.each do |mod|
+  mod = Mod.new name: mod,
+                description: "Module about fluids",
+                year: Year.sample,
+                department: first_bristol_department,
+                university: University.second
+  mod.save!
+end
+
+MODULE_COMPSCIS_BRISTOL.each do |mod|
+  mod = Mod.new name: mod,
+                description: "Module about fluids",
+                year: Year.sample,
+                department: comsci_bristol_department,
+                university: University.second
   mod.save!
 end
 
 first_module = Mod.first
-100.times do
+10.times do
   review = Review.new rating: 4,
                       review: "bad module",
                       grade: "1st class honours",
-                      mod: Mod.all.sample,
+                      mod: Mod.first,
                       user: first_user
   review.save!
 end
