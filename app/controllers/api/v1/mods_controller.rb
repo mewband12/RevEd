@@ -7,6 +7,6 @@ class Api::V1::ModsController < ApplicationController
 
   def show
     @mod = Mod.find(params[:id])
-    render json: @Mod
+    render json: @mod
   end
 end

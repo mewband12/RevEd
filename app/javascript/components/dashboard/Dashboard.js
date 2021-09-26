@@ -86,26 +86,52 @@ const mdTheme = createTheme();
 
 function DashboardContent(props) {
   const [open, setOpen] = React.useState(true);
+  const [Module, setModule] = useState({});
   const [Department, setDepartment] = useState({});
-
+  const [University, setUniversity] = useState({});
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  useEffect(() => {
-    // console.log(id, "mew")
-    axios.get(`/api/v1/departments/${props.props.id}`)
-      .then(res => {
-        setDepartment(res.data)
-        // console.log(res)
-      })
-      .catch(res => console.log(res))
-    // api/v1/universities/1
-    // universities/1
 
-  }, [[Department.length]])
-  // console.log(Module, 'test')
-  // console.log(props)
+  useEffect(() => {
+    function getModules() {
+      axios.get(`/api/v1/mods/${props.props.id}`)
+        .then(res => {
+          // console.log(res)
+          getDepartment(res.data)
+          getUniversity(res.data)
+          setModule(res.data)
+        })
+        .catch(res => console.log(res))
+    }
+
+    function getDepartment(param) {
+      axios.get(`/api/v1/departments/${param["department_id"]}`)
+        .then(res => {
+          setDepartment(res.data)
+          // console.log(res)
+        })
+        .catch(res => console.log(res))
+    }
+    function getUniversity(param) {
+      axios.get(`/api/v1/universities/${param["university_id"]}`)
+        .then(res => {
+          setUniversity(res.data)
+          // console.log(res)
+        })
+        .catch(res => console.log(res))
+    }
+
+    getModules()
+
+  }, [])
+
+
+  console.log(Module, 'test')
+  console.log(Department, "test2")
+  console.log(University, "test3")
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -145,6 +171,15 @@ function DashboardContent(props) {
             <Typography
               component="h2"
               variant="h3"
+              align="left"
+              color="text.primary"
+              gutterBottom
+            >
+              {Module.name}
+            </Typography>
+            <Typography
+              component="h5"
+              variant="h5"
               align="left"
               color="text.primary"
               gutterBottom

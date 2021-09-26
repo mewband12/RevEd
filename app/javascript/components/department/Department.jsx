@@ -59,7 +59,7 @@ export default function Department(props) {
     // api/v1/universities/1
     // universities/1
 
-  }, [[University.length]])
+  }, [])
 
   useEffect(() => {
     axios.get(`/api/v1/departments/${props.id_dep}`)
@@ -68,7 +68,7 @@ export default function Department(props) {
         // console.log(res)
       })
       .catch(res => console.log(res))
-  }, [Department.length])
+  }, [])
 
   useEffect(() => {
     axios.get(`/api/v1/mods`)
@@ -77,7 +77,7 @@ export default function Department(props) {
         // console.log(res)
       })
       .catch(res => console.log(res))
-  }, [Modules.length])
+  }, [])
 
   function module_filtered(uni_id, dep_id) {
 

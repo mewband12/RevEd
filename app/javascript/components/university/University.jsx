@@ -59,7 +59,7 @@ export default function University(id) {
     // api/v1/universities/1
     // universities/1
 
-  }, [[ University.length]])
+  }, [])
 
   useEffect(() => {
     axios.get("/api/v1/departments.json")
@@ -68,8 +68,18 @@ export default function University(id) {
         // console.log(res)
       })
       .catch(res => console.log(res))
-  }, [Departments.length])
+  }, [])
 
+  useEffect(() => {
+    axios.get("/api/v1/reviewdepcounts.json")
+      .then(res => {
+        setReviewcounts(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+  }, [])
+
+  console.log(Departments)
   function department_filtered(uni_id) {
     var arr = []
     for (var i = 0; i < Departments.length; i++) {
@@ -86,14 +96,6 @@ export default function University(id) {
     setExpanded(!expanded);
   };
 
-  useEffect(() => {
-    axios.get("/api/v1/reviewdepcounts.json")
-      .then(res => {
-        setReviewcounts(res.data)
-        // console.log(res)
-      })
-      .catch(res => console.log(res))
-  }, [reviewdepcounts.length])
   // console.log(Departments)
   return (
     <div>
