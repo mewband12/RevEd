@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :departments, only: [:index, :show]
   resources :mods, only: [:show] do
     resources :reviews, only: [:create, :destroy]
-    resources :discussions, only: [:show]
+    resources :discussions, only: [:index]
   end
   # add user profile later
 

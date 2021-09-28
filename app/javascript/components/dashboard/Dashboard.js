@@ -184,7 +184,7 @@ function DashboardContent(props) {
               color="text.primary"
               gutterBottom
             >
-              {Department.name}
+              {Department.name}, {University.name}
             </Typography>
             <Grid container spacing={3}>
               {/* Chart */}
