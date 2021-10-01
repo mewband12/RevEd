@@ -6,7 +6,7 @@ class Api::V1::ReviewsController < ApplicationController
     if @review.save
       render json: @review
     else
-      render json: @review.errors
+      render json: @review
     end
   end
 
@@ -16,6 +16,6 @@ class Api::V1::ReviewsController < ApplicationController
   private
 
     def review_params
-      params.permit(:rating, :review, :grade)
+      params.permit(:rating, :review, :grade, :id, :mod_id,:user_id, :created_at,:updated_at, :before_grade, :exm_difficulty, :review, :nature, :hourly_input)
     end
 end
