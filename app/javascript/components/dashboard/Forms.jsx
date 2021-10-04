@@ -1,12 +1,38 @@
 import { TextField, Button } from '@mui/material';
 import { Result } from 'postcss';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react'
 // import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
 
-export default function Forms() {
+export default function Forms(props) {
+  const [Reviews, setReviews] = useState({});
+  useEffect(() => {
+    // console.log(id, "mew")
+    axios.get(`/api/v1/mods/${props.id}/reviewscomment`)
+      .then(res => {
+        setReviews(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+    // api/v1/universities/1
+    // universities/1
+
+  }, [])
+  console.log(props.id, "check")
+  var ids = [];
+
+  if (Object.keys(Reviews).length !== 0) {
+    console.log(Reviews, 'testing')
+    Reviews.forEach(element => {
+      ids.push(element.id);
+  })
+  }
+  var review_id = Math.max(...ids)
+  // var id = hash["id"]
+  // console.log(id)
+
   const initialReview = {
-    id: 11,
+    id: review_id + 1,
     rating: 2,
     review: '',
     grade: '',
@@ -39,13 +65,6 @@ export default function Forms() {
   }
   return (
     <form onSubmit={handleLogin}>
-      <TextField
-        name="id"
-        value={review.id}
-        onChange={handleChange}
-        label="id"
-        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-      />
       <TextField
         name="rating"
         value={review.rating}

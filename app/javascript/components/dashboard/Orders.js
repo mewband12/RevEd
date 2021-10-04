@@ -111,7 +111,7 @@ function preventDefault(event) {
                 Submit
               </Button>
             </Form> */}
-            <Forms/>
+            <Forms id = {props.id} />
 
 
           </Modal.Body>
