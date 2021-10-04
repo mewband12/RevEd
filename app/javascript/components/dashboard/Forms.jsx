@@ -1,11 +1,15 @@
 import { TextField, Button } from '@mui/material';
 import { Result } from 'postcss';
 import React, { useState, useEffect } from 'react'
+import { Modal, Form } from 'react-bootstrap';
 // import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
 
 export default function Forms(props) {
   const [Reviews, setReviews] = useState({});
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   useEffect(() => {
     // console.log(id, "mew")
     axios.get(`/api/v1/mods/${props.id}/reviewscomment`)
@@ -64,6 +68,17 @@ export default function Forms(props) {
     })
   }
   return (
+<>
+<Button variant="primary" onClick={handleShow}>
+  Launch demo modal
+</Button>
+
+<Modal show={show} onHide={handleClose} animation={false}>
+  <Modal.Header closeButton>
+    <Modal.Title>Modal heading</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    Woohoo, you're reading this text in a modal!
     <form onSubmit={handleLogin}>
       <TextField
         name="rating"
@@ -98,11 +113,13 @@ export default function Forms(props) {
         label="userid"
         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
       />
-
       <Button variant="primary" type="submit">
         Submit
       </Button>
     </form>
+    </Modal.Body>
+  </Modal>
+</>
   )
 
 }
