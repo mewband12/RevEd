@@ -128,9 +128,9 @@ function DashboardContent(props) {
   }, [])
 
 
-  console.log(Module, 'test')
-  console.log(Department, "test2")
-  console.log(University, "test3")
+  // console.log(Module, 'test')
+  // console.log(Department, "test2")
+  // console.log(University, "test3")
 
   return (
     <ThemeProvider theme={mdTheme}>

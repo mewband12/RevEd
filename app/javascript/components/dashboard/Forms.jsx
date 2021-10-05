@@ -7,9 +7,27 @@ import axios from 'axios';
 
 export default function Forms(props) {
   const [Reviews, setReviews] = useState({});
+  const [User, setUser] =useState({});
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    // console.log(id, "mew")
+    axios.get(`/api/v1/users/`)
+      .then(res => {
+        console.log(res.data["id"], "resid")
+        // var userid = res.data["id"]
+        setUser(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+    // api/v1/universities/1
+    // universities/1
+
+  }, [])
+  // console.log(Users, "lol")
+
   useEffect(() => {
     // console.log(id, "mew")
     axios.get(`/api/v1/mods/${props.id}/reviewscomment`)
@@ -22,26 +40,48 @@ export default function Forms(props) {
     // universities/1
 
   }, [])
-  console.log(props.id, "check")
+  // console.log(props.id, "check")
   var ids = [];
 
+  // if (User.id !== undefined) {
+  //   // console.log(Users, 'testing')
+  //   users.push(User.id)
+  //   // console.log("passed")
+  //   // console.log(userid, "userid")
+  // }
+
+  // if (User.id === 'undefined') {
+  //   // console.log(Reviews, 'testing')
+  //   var Userid = 1
+  // } else {
+  //   var Userid = User.id
+  // }
+
+  // if (props.user !== {}) {
+  //   var userid = props.user.id
+  //   console.log(props.user, "propsuser")
+  // }
+
+  // var userid = 2
+  var userid = 2
+
   if (Object.keys(Reviews).length !== 0) {
-    console.log(Reviews, 'testing')
+    // console.log(Reviews, 'testing')
     Reviews.forEach(element => {
       ids.push(element.id);
   })
   }
-  var review_id = Math.max(...ids)
-  // var id = hash["id"]
-  // console.log(id)
 
-  const initialReview = {
+  var review_id = Math.max(...ids)
+
+
+  var initialReview = {
     id: review_id + 1,
-    rating: 2,
+    rating: '',
     review: '',
     grade: '',
-    mod_id: 1,
-    user_id: 1,
+    mod_id: props.id,
+    user_id: userid,
     create_at: new Date().toString(),
     updated_at: new Date().toString(),
     before_grade: "65",
@@ -50,15 +90,17 @@ export default function Forms(props) {
     nature: "asd",
     learning_approach: "asd"
   }
+
   const [review, setReview] = React.useState(initialReview)
+
   const handleLogin = e => {
     e.preventDefault()
-    axios.post("/api/v1/mods/1/reviews", review)
+    axios.post(`/api/v1/mods/${props.id}/reviews`, review)
       .then(result => {
         console.log(result)
       })
       .catch(err => alert(err))
-      console.log(review)
+      // console.log(review)
       window.location.reload(false)
   }
   const handleChange = e => {
@@ -68,6 +110,8 @@ export default function Forms(props) {
       [e.target.name]: value
     })
   }
+
+
   return (
 <>
 <Button variant="primary" onClick={handleShow}>
@@ -100,7 +144,7 @@ export default function Forms(props) {
         onChange={handleChange}
         label="grade"
       />
-      <TextField
+      {/* <TextField
         name="mod_id"
         value={review.mod_id}
         onChange={handleChange}
@@ -113,7 +157,7 @@ export default function Forms(props) {
         onChange={handleChange}
         label="userid"
         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-      />
+      /> */}
       <Button variant="primary" type="submit">
         Submit
       </Button>

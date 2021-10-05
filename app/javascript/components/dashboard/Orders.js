@@ -14,8 +14,22 @@ import Forms from './Forms';
 export default function Orders(props) {
 const [Reviews, setReviews] = useState({});
 const [show, setShow] = useState(false);
+const [User, setUser] = useState({});
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
+
+useEffect(() => {
+  // console.log(id, "mew")
+  axios.get(`/api/v1/users/`)
+    .then(res => {
+      setUser(res.data)
+      // console.log(res)
+    })
+    .catch(res => console.log(res))
+  // api/v1/universities/1
+  // universities/1
+
+}, [])
 
 useEffect(() => {
   // console.log(id, "mew")
@@ -33,13 +47,25 @@ useEffect(() => {
 
 console.log(Reviews)
 
-function createData(id, review, grade, before_grade, rating, hourly_input, exm_difficulty) {
-  return { id, review, grade, before_grade, rating, hourly_input, exm_difficulty};
+function createData(id, email, review, grade, before_grade, rating, hourly_input, exm_difficulty) {
+  return { id, email, review, grade, before_grade, rating, hourly_input, exm_difficulty};
 }
 const rows = []
 
+function user_filtered(user_id) {
+  var arr = []
+  for (var i = 0; i < User.length; i++) {
+    if (User[i]["id"] == user_id) {
+      arr.push(User[i])
+    }
+  }
+  return arr[0]
+}
+
+console.log(user_filtered(1),"ufilterd")
+
 Array.prototype.forEach.call(Reviews, review => {
-  rows.push(createData(review["id"], review["review"], review["grade"], review["before_grade"], review["rating"], review["hourly_input"], review["exm_difficulty"]))
+  rows.push(createData(review["id"], user_filtered(review["user_id"])["email"], review["review"], review["grade"], review["before_grade"], review["rating"], review["hourly_input"], review["exm_difficulty"]))
 });
 
 
@@ -54,6 +80,7 @@ function preventDefault(event) {
       <Table size="small">
         <TableHead>
           <TableRow>
+            <TableCell>email</TableCell>
             <TableCell>review</TableCell>
             <TableCell>Grade </TableCell>
             <TableCell>rating</TableCell>
@@ -65,6 +92,7 @@ function preventDefault(event) {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
+              <TableCell>{row.email}</TableCell>
               <TableCell>{row.review}</TableCell>
               <TableCell>{row.grade}</TableCell>
               <TableCell>{row.before_grade}</TableCell>
@@ -76,7 +104,7 @@ function preventDefault(event) {
         </TableBody>
       </Table>
 
-      <Forms id = {props.id} />
+      <Forms id = {props.id} user ={User}/>
 
     </React.Fragment>
   );

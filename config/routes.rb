@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resources :reviewcounts, only: [ :index, :show ]
       resources :reviewdepcounts, only: [:index, :show]
       resources :departments, only: [:index, :show ]
+      resources :users, only: [:index, :show]
       resources :mods, only: [:index, :show] do
         resources :reviews, only: [:create, :destroy]
         resources :reviewscomment, only: [:index]
