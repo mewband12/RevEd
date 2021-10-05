@@ -59,6 +59,7 @@ export default function Forms(props) {
       })
       .catch(err => alert(err))
       console.log(review)
+      window.location.reload(false)
   }
   const handleChange = e => {
     const value = e.target.value
@@ -116,6 +117,7 @@ export default function Forms(props) {
       <Button variant="primary" type="submit">
         Submit
       </Button>
+
     </form>
     </Modal.Body>
   </Modal>
