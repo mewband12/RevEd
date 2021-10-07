@@ -20,8 +20,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
-import Deposits from './Deposits';
+import Grade from './Grade';
+import Examdifficulty from './Examdifficulty';
+import Hourlyinput from './hourlyinput';
 import Orders from './Orders';
+import Rating from '@mui/material/Rating';
 
 function Copyright(props) {
   return (
@@ -89,6 +92,7 @@ function DashboardContent(props) {
   const [Module, setModule] = useState({});
   const [Department, setDepartment] = useState({});
   const [University, setUniversity] = useState({});
+  const [summary, setSummary] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -128,9 +132,20 @@ function DashboardContent(props) {
   }, [])
 
 
-  console.log(Module, 'test')
-  console.log(Department, "test2")
-  console.log(University, "test3")
+  useEffect(() => {
+    // console.log(id, "mew")
+    axios.get(`/api/v1/mods/${props.props.id}/reviewsummary1`)
+      .then(res => {
+        setSummary(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+  }, [])
+
+  console.log(summary.rating, "summaryrating")
+  // console.log(Module, 'test')
+  // console.log(Department, "test2")
+  // console.log(University, "test3")
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -175,7 +190,7 @@ function DashboardContent(props) {
               color="text.primary"
               gutterBottom
             >
-              {Module.name}
+              {Module.name} <Rating name="rating" value={parseFloat(summary.rating)} precision={0.1} readOnly />
             </Typography>
             <Typography
               component="h5"
@@ -184,7 +199,7 @@ function DashboardContent(props) {
               color="text.primary"
               gutterBottom
             >
-              {Department.name}
+              {Department.name}, {University.name}
             </Typography>
             <Grid container spacing={3}>
               {/* Chart */}
@@ -210,7 +225,7 @@ function DashboardContent(props) {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <Grade mod_id={props.props.id}/>
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
@@ -222,7 +237,7 @@ function DashboardContent(props) {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <Hourlyinput mod_id={props.props.id} />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
@@ -234,13 +249,13 @@ function DashboardContent(props) {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <Examdifficulty mod_id={props.props.id} />
                 </Paper>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+                  <Orders id={props.props.id}/>
                 </Paper>
               </Grid>
             </Grid>
