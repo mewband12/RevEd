@@ -4,6 +4,12 @@ import React, { useState, useEffect } from 'react'
 import { Modal, Form } from 'react-bootstrap';
 // import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
+import Slider, { SliderThumb } from '@mui/material/Slider';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Rating from '@mui/material/Rating';
 
 export default function Forms(props) {
   const [Reviews, setReviews] = useState({});
@@ -84,11 +90,11 @@ export default function Forms(props) {
     user_id: userid,
     create_at: new Date().toString(),
     updated_at: new Date().toString(),
-    before_grade: "65",
-    hourly_input: "10",
+    before_grade: '',
+    hourly_input: 0,
     exm_difficulty: "8",
     nature: "asd",
-    learning_approach: "asd"
+    learning_approach: "USD"
   }
 
   const [review, setReview] = React.useState(initialReview)
@@ -111,6 +117,56 @@ export default function Forms(props) {
     })
   }
 
+  const marks = [
+    {
+      value: 5,
+      label: '5 hr/week',
+    },
+    {
+      value: 40,
+      label: '40 hr/week',
+    },
+  ];
+  const nature = [
+    {
+      value: 1,
+      label: 'Theoretical',
+    },
+    {
+      value: 9,
+      label: 'Practical',
+    },
+  ];
+
+  const approaches = [
+    {
+      value: 'USD',
+      label: '$',
+    },
+    {
+      value: 'EUR',
+      label: '€',
+    },
+    {
+      value: 'BTC',
+      label: '฿',
+    },
+    {
+      value: 'JPY',
+      label: '¥',
+    },
+  ];
+
+  function ValueLabelComponent(props) {
+    const { children, value } = props;
+
+    return (
+      <Tooltip enterTouchDelay={0} placement="top" title={value}>
+        {children}
+      </Tooltip>
+    );
+  }
+
 
   return (
 <>
@@ -130,34 +186,121 @@ export default function Forms(props) {
         value={review.rating}
         onChange={handleChange}
         label="rating"
+        fullWidth
+        margin ="normal"
         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+      />
+      <Typography component="legend">Controlled</Typography>
+      <Rating
+        name="rating"
+        value={review.rating}
+        onChange={handleChange}
       />
       <TextField
         name="review"
         value={review.review}
         onChange={handleChange}
+        fullWidth
+        multiline
+        rows={4}
+        margin ="normal"
         label="review"
+        variant = "filled"
       />
       <TextField
         name="grade"
         value={review.grade}
         onChange={handleChange}
+        margin ="normal"
         label="grade"
-      />
-      {/* <TextField
-        name="mod_id"
-        value={review.mod_id}
-        onChange={handleChange}
-        label="modid"
-        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+        focused
+        variant = "standard"
       />
       <TextField
-        name="user_id"
-        value={review.user_id}
+        name="before_grade"
+        value={review.before_grade}
         onChange={handleChange}
-        label="userid"
-        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+        margin ="normal"
+        label="before_grade"
+        focused
+        variant = "standard"
+      />
+      <Box sx={{ m: 3 }} />
+      <Typography gutterBottom>Hourly input</Typography>
+      <Slider
+        name = "hourly_input"
+        valueLabelDisplay="auto"
+        components={{
+          ValueLabel: ValueLabelComponent,
+        }}
+        aria-label="custom thumb label"
+        defaultValue={20}
+        onChange={handleChange}
+        marks = {marks}
+        value={review.hourly_input}
+        max = {45}
+            />
+      {/* <TextField
+        name="exm_difficulty"
+        value={review.exm_difficulty}
+        onChange={handleChange}
+        fullWidth
+        margin ="normal"
+        label="exm_difficulty"
       /> */}
+      <Box sx={{ m: 3 }} />
+      <Typography gutterBottom>Exam difficulty</Typography>
+      <Slider
+        name="exm_difficulty"
+        valueLabelDisplay="auto"
+        components={{
+          ValueLabel: ValueLabelComponent,
+        }}
+        aria-label="custom thumb label"
+        defaultValue={3}
+        onChange={handleChange}
+        value={review.exm_difficulty}
+        max={10}
+      />
+      <Typography gutterBottom>Nature of the module</Typography>
+      <Slider
+        name="nature"
+        valueLabelDisplay="auto"
+        components={{
+          ValueLabel: ValueLabelComponent,
+        }}
+        aria-label="custom thumb label"
+        defaultValue={3}
+        onChange={handleChange}
+        value={review.nature}
+        marks={nature}
+        max={10}
+      />
+      {/* <TextField
+        name="nature"
+        value={review.nature}
+        onChange={handleChange}
+        fullWidth
+        margin ="normal"
+        label="nature"
+      /> */}
+      <TextField
+        name="learning_approach"
+        value={review.learning_approach}
+        onChange={handleChange}
+        fullWidth
+        select
+        margin ="normal"
+        label="learning_approach"
+        helperText="Please select"
+      >
+        {approaches.map((option)=> (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
+
       <Button variant="primary" type="submit">
         Submit
       </Button>

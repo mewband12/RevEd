@@ -62,7 +62,7 @@ function user_filtered(user_id) {
   return arr[0]
 }
 
-console.log(user_filtered(1),"ufilterd")
+// console.log(user_filtered(1),"ufilterd")
 
 Array.prototype.forEach.call(Reviews, review => {
   rows.push(createData(review["id"], user_filtered(review["user_id"])["email"], review["review"], review["grade"], review["before_grade"], review["rating"], review["hourly_input"], review["exm_difficulty"]))
