@@ -111,12 +111,12 @@ first_module = Mod.first
 10.times do
   review = Review.new rating: 4,
                       review: "bad module",
-                      grade: "85",
+                      grade: 85,
                       mod: Mod.first,
                       user: first_user,
-                      before_grade: "65",
-                      hourly_input: "10",
-                      exm_difficulty: "8"
+                      before_grade: 65,
+                      hourly_input: 10,
+                      exm_difficulty: 8
   review.save!
 end
 10.times do

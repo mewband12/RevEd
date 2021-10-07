@@ -6,7 +6,7 @@ class Api::V1::ReviewsController < ApplicationController
     if @review.save
       render json: @review
     else
-      render json: @review
+      render json: @review.errors
     end
   end
 

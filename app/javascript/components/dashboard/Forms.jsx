@@ -69,7 +69,7 @@ export default function Forms(props) {
   // }
 
   // var userid = 2
-  var userid = 2
+  var userid = 1
 
   if (Object.keys(Reviews).length !== 0) {
     // console.log(Reviews, 'testing')
@@ -80,21 +80,22 @@ export default function Forms(props) {
 
   var review_id = Math.max(...ids)
 
-
+  console.log(review_id, "reviewid")
   var initialReview = {
     id: review_id + 1,
-    rating: '',
+    rating: 2,
     review: '',
-    grade: '',
+    grade: 0,
     mod_id: props.id,
     user_id: userid,
-    create_at: new Date().toString(),
+    created_at: new Date().toString(),
     updated_at: new Date().toString(),
-    before_grade: '',
+    before_grade: 0,
     hourly_input: 0,
-    exm_difficulty: "8",
-    nature: "asd",
-    learning_approach: "USD"
+    exm_difficulty: 2,
+    nature: 3,
+    learning_approach: "USD",
+    personality: "test"
   }
 
   const [review, setReview] = React.useState(initialReview)
@@ -141,19 +142,19 @@ export default function Forms(props) {
   const approaches = [
     {
       value: 'USD',
-      label: '$',
+      label: 'a',
     },
     {
       value: 'EUR',
-      label: '€',
+      label: 'b',
     },
     {
       value: 'BTC',
-      label: '฿',
+      label: 'c',
     },
     {
       value: 'JPY',
-      label: '¥',
+      label: 'd',
     },
   ];
 
@@ -181,16 +182,7 @@ export default function Forms(props) {
   <Modal.Body>
     Woohoo, you're reading this text in a modal!
     <form onSubmit={handleLogin}>
-      <TextField
-        name="rating"
-        value={review.rating}
-        onChange={handleChange}
-        label="rating"
-        fullWidth
-        margin ="normal"
-        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-      />
-      <Typography component="legend">Controlled</Typography>
+      <Typography component="legend">Rate the Module</Typography>
       <Rating
         name="rating"
         value={review.rating}
@@ -213,7 +205,6 @@ export default function Forms(props) {
         onChange={handleChange}
         margin ="normal"
         label="grade"
-        focused
         variant = "standard"
       />
       <TextField
@@ -222,7 +213,6 @@ export default function Forms(props) {
         onChange={handleChange}
         margin ="normal"
         label="before_grade"
-        focused
         variant = "standard"
       />
       <Box sx={{ m: 3 }} />

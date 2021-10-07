@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :mods, only: [:index, :show] do
         resources :reviews, only: [:create, :destroy]
         resources :reviewscomment, only: [:index]
+        resources :reviewsummary1, only: [:index]
       end
     end
   end
