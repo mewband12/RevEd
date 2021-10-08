@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :universities, only: [ :index, :show ]
       resources :reviewcounts, only: [ :index, :show ]
       resources :reviewdepcounts, only: [:index, :show]
+      resources :reviewmodcounts, only: [:index]
       resources :departments, only: [:index, :show ]
       resources :users, only: [:index, :show]
       resources :mods, only: [:index, :show] do
