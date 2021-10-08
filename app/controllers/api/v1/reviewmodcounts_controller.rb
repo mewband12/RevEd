@@ -1,14 +1,12 @@
 class Api::V1::ReviewmodcountsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   def index
-    skip_before_action :authenticate_user!, only: %i[index show]
     def index
-      # @modules = Module.all
-      # modreviews = {}
-      # @modules.each do |dep|
-      #   depreviews[dep.id] = count_reviews(dep)
-      # end
-      # render json: depreviews
-      raise
+      modreview = {}
+      Review.ids.each do |id|
+        modreview[id] = Review.where(mod_id: id).count
+      end
+      render json: modreview
     end
 
 

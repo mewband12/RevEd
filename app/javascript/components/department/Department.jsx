@@ -45,6 +45,7 @@ export default function Department(props) {
   const [University, setUniversity] = useState({});
   const [Department, setDepartment] = useState([]);
   const [Modules, setModules] = useState([]);
+  const [Modrevcount, setModrevcount] = useState([]);
   // const [reviewdepcounts, setReviewcounts] = useState([]);
 
   useEffect(() => {
@@ -79,6 +80,21 @@ export default function Department(props) {
       .catch(res => console.log(res))
   }, [])
 
+
+  useEffect(() => {
+    // console.log(id_dep.id_dep, id_dep.id_uni)
+    // console.log(id_uni)
+    axios.get(`/api/v1/reviewmodcounts`)
+    .then(res => {
+      setModrevcount(res.data)
+      // console.log(res)
+    })
+    .catch(res => console.log(res))
+    // api/v1/universities/1
+    // universities/1
+
+  }, [])
+
   function module_filtered(uni_id, dep_id) {
 
     var arr = []
@@ -89,6 +105,8 @@ export default function Department(props) {
     }
     return arr
   }
+
+  console.log(Modrevcount,'modrevcount')
 
   console.log(module_filtered(1,1))
 
@@ -118,14 +136,14 @@ export default function Department(props) {
         justifyContent="center"
       >
         <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
-          {module_filtered(props.id_uni, props.id_dep).slice(0, module_filtered(props.id_uni, props.id_dep).length).map((department) => (
-            <ListItem key={department.id} alignItems="flex-start">
+          {module_filtered(props.id_uni, props.id_dep).slice(0, module_filtered(props.id_uni, props.id_dep).length).map((module) => (
+            <ListItem key={module.id} alignItems="flex-start">
               <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
               </ListItemAvatar>
               <ListItemText
 
-                primary={<a href={`/mods/${department.id}`}> {department.name} </a>}
+                primary={<a href={`/mods/${module.id}`}> {module.name} </a>}
                 secondary={
                   <React.Fragment>
                     <Typography
@@ -134,9 +152,9 @@ export default function Department(props) {
                       variant="body2"
                       color="text.primary"
                     >
-                      {department.description}
+                      {module.description}
                     </Typography>
-                    " — reviews:"
+                     — reviews: {Modrevcount[module.id]}
                   </React.Fragment>
                 }
               />
