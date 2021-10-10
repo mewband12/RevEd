@@ -24,6 +24,8 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import { makeStyles } from "@material-ui/core/styles";
+import ModuleSearch from '../searchBar/ModuleSearch';
+// import { Container } from '@mui/material';
 // import CheckBoxIcon from '@material-ui/icons/CheckBox';
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -177,6 +179,8 @@ const Universities = () => {
       <CssBaseline/>
 
       <main>
+        <Container maxWidth="sm">
+          <ModuleSearch/>
         <Autocomplete
           multiple
           id="checkboxes-tags-demo"
@@ -268,6 +272,7 @@ const Universities = () => {
             />
           )}
         />
+        </Container>
 
 
 
