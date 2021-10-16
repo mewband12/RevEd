@@ -172,7 +172,7 @@ const Universities = () => {
   const Test = ["https://www.timeshighereducation.com/sites/default/files/styles/the_breaking_news_image_style/public/Pictures/web/y/d/t/the-university-of-warwick-logo-2015.jpg?itok=VQ2a0l-F", "https://www.universitytranscriptions.co.uk/wp-content/uploads/University-of-Bristol.png"]
 
   // console.log(universities[0], "test")
-  console.log(options2, "op2")
+  // console.log(options2, "op2")
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme} >
@@ -181,7 +181,7 @@ const Universities = () => {
       <main>
         <Container maxWidth="sm">
           <ModuleSearch/>
-        <Autocomplete
+        {/* <Autocomplete
           multiple
           id="checkboxes-tags-demo"
           options={topFilms}
@@ -271,7 +271,7 @@ const Universities = () => {
               }}
             />
           )}
-        />
+        /> */}
         </Container>
 
 

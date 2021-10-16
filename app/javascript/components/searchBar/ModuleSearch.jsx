@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -12,9 +13,26 @@ const useStyles = makeStyles({
   }
 })
 
-export default function ModuleSearch() {
 
+export default function ModuleSearch() {
+  const [universities, setUniversities] = useState([]);
   const classes = useStyles()
+
+  useEffect(() => {
+    // console.log(id_dep.id_dep, id_dep.id_uni)
+    // console.log(id_uni)
+    axios.get(`/api/v1/universities/`)
+      .then(res => {
+        setUniversities(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+    // api/v1/universities/1
+    // universities/1
+
+  }, [])
+
+  console.log(universities, "universities")
 
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
@@ -23,7 +41,7 @@ export default function ModuleSearch() {
         // value={}
         id="free-solo-2-demo"
         disableClearable
-        options={ModuleList}
+        options={universities}
         getOptionLabel={(option) => (option.modCode)}
         renderOption={(props, option) => (
           <React.Fragment>
@@ -31,10 +49,10 @@ export default function ModuleSearch() {
               style={{justifyContent: "flex-start"}}
               className={classes.button}
               onClick={() => {
-                window.location.href = option.link;
+                window.location.href = `universities/${option.id}`;
               }}
             >
-              {option.modCode} - {option.modName}
+              {option.name}
             </Button>
           </React.Fragment>
         )}
