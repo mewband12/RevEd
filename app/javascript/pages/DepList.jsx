@@ -1,11 +1,11 @@
 // import * as React from 'react';
 import React, { useEffect, useState } from 'react'
-import University from './university/University';
+import University from '../components/university/University';
 // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // const theme = createTheme();
 
-const Department = (props) => {
+const DepList = (props) => {
   // console.log(this.id)
   const id_uni = props.match.params.id
   return (
@@ -15,4 +15,4 @@ const Department = (props) => {
   )
 }
 
-export default Department
+export default DepList
