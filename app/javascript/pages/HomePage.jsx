@@ -11,13 +11,16 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Avatar } from '@mui/material';
+
+import { Image, Transformation } from 'cloudinary-react'
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import University from '../components/universities/University';
 import { makeStyles } from "@material-ui/core/styles";
 import ModuleSearch from '../components/searchBar/ModuleSearch';
 
 import studybanner from '../assets/studybanner.jpg'
 import { HomeSharp } from '@mui/icons-material';
+import HowTo from '../components/home/HowTo';
 // /Volumes/KongV2/Startup_RevEd/Dev/RevEd/app/
 
 const theme = createTheme();
@@ -162,7 +165,10 @@ const HomePage = () => {
               <Grid item key={card.id} xs={12} sm={6} md={4}>
                 {/* <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}> */}
                   {/* <CardMedia component="img" alt="green iguana" height="140" image= {Test[Math.floor(Math.random()*Test.length)]} /> */}
-                <Avatar alt="Remy Sharp" sx={{ width: 200, height: 200 }} style={{ margin: "0 auto" }} src={Test[Math.floor(Math.random() * Test.length)]}></Avatar>
+                  <Avatar sx={{ width: 200, height: 200 }} style={{ margin: "0 auto" }}>
+                   <Image cloudName="le-wagon-tokyo" publicId ={`https://res.cloudinary.com/le-wagon-tokyo/image/upload/v1633890329/development/${card.photo_key}`} style={{ width: 200 }}>
+                   </Image>
+                 </Avatar>
                   <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2" style={{ textAlign: "center", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
                       {card.name}
@@ -196,6 +202,9 @@ const HomePage = () => {
         </Container>
         </Box>
       </main>
+      <Box>
+        <HowTo />
+      </Box>
       {/* Footer */}
       <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
@@ -211,6 +220,7 @@ const HomePage = () => {
         </Typography>
       </Box>
       {/* End footer */}
+     
     </ThemeProvider>
   );
 }
