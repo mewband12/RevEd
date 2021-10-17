@@ -25,6 +25,7 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ModuleSearch from '../searchBar/ModuleSearch';
 // import Avatar from '@mui/material/Avatar';
 // import Typography from '@mui/material/Typography';
 
@@ -99,6 +100,9 @@ export default function University(id) {
   // console.log(Departments)
   return (
     <div>
+    <Container maxWidth="sm">
+      <ModuleSearch id = {id.id}></ModuleSearch>
+    </Container>
     <Grid
       container
       spacing={0}

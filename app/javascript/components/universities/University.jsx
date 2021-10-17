@@ -1,8 +1,13 @@
 import React from 'react'
+import ModuleSearch from '../searchBar/ModuleSearch';
 
 const University = (props) => {
-  console.log(props)
+  console.log(props, "depapage")
   return (
+    <>
+    <Container maxWidth="sm">
+      <ModuleSearch></ModuleSearch>
+    </Container>
     <Grid item key={card.id} xs={12} sm={6} md={4}>
       {/* <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}> */}
       {/* <CardMedia component="img" alt="green iguana" height="140" image= {Test[Math.floor(Math.random()*Test.length)]} /> */}
@@ -12,7 +17,7 @@ const University = (props) => {
           {card.name}
         </Typography>
         <Typography style={{ textAlign: "center" }}>
-          Reviews: {reviewcounts[card.name]}
+          Resviews: {reviewcounts[card.name]}
         </Typography>
       </CardContent>
       <CardActions>
@@ -26,6 +31,7 @@ const University = (props) => {
       </CardActions>
       {/* </Card> */}
     </Grid>
+    </>
     )
 }
 export default University

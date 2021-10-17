@@ -14,16 +14,16 @@ const useStyles = makeStyles({
 })
 
 
-export default function ModuleSearch(props) {
-  const [Mods, setMods] = useState([]);
+export default function UniversitySearch() {
+  const [universities, setUniversities] = useState([]);
   const classes = useStyles()
 
   useEffect(() => {
     // console.log(id_dep.id_dep, id_dep.id_uni)
     // console.log(id_uni)
-    axios.get(`/api/v1/mods`)
+    axios.get(`/api/v1/universities/`)
       .then(res => {
-        setMods(res.data)
+        setUniversities(res.data)
         // console.log(res)
       })
       .catch(res => console.log(res))
@@ -32,18 +32,8 @@ export default function ModuleSearch(props) {
 
   }, [])
 
-  function mod_filtered(uni_id) {
-    var arr = []
-    for (var i = 0; i < Mods.length; i++) {
-      if (Mods[i]["university_id"] == uni_id) {
-        arr.push(Mods[i])
-      }
-    }
-    return arr
-  }
+  console.log(universities, "universities")
 
-  // console.log(universities, "universities")
-  console.log(mod_filtered(props.id), "searchbar")
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
@@ -51,12 +41,12 @@ export default function ModuleSearch(props) {
         // value={}
         id="free-solo-2-demo"
         disableClearable
-        options={Mods}
+        options={universities}
         getOptionLabel={(option) => (option.modCode)}
         renderOption={(props, option) => (
           <React.Fragment>
             <Button
-              style={{justifyContent: "flex-start"}}
+              style={{ justifyContent: "flex-start" }}
               className={classes.button}
               onClick={() => {
                 window.location.href = `universities/${option.id}`;
@@ -83,16 +73,16 @@ export default function ModuleSearch(props) {
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const ModuleList = [
-  { modCode: 'CS342', modName: 'OS and Network', link: '/universities/1'},
-  { modCode: 'CS242', modName: 'HEEEE', link: '/universities/2'},
-  { modCode: 'CS322', modName: 'JUYU', link: '/universities/3'},
-  { modCode: 'CS312', modName: 'OS and Network', link: '/universities/4'},
-  { modCode: 'CS345', modName: 'OS and Network', link: '/universities/1'},
-  { modCode: 'CS332', modName: 'OS and Network', link: '/universities/1'},
-  { modCode: 'CS142', modName: 'OS and Network', link: '/universities/1'},
-  { modCode: 'CS112', modName: 'OS and Network', link: '/universities/1'},
-  { modCode: 'CS132', modName: 'OS and Network', link: '/universities/1'},
-  { modCode: 'CS442', modName: 'OS and Network', link: '/universities/1'},
-  { modCode: 'CS372', modName: 'OS and Network', link: '/universities/1'},
+  { modCode: 'CS342', modName: 'OS and Network', link: '/universities/1' },
+  { modCode: 'CS242', modName: 'HEEEE', link: '/universities/2' },
+  { modCode: 'CS322', modName: 'JUYU', link: '/universities/3' },
+  { modCode: 'CS312', modName: 'OS and Network', link: '/universities/4' },
+  { modCode: 'CS345', modName: 'OS and Network', link: '/universities/1' },
+  { modCode: 'CS332', modName: 'OS and Network', link: '/universities/1' },
+  { modCode: 'CS142', modName: 'OS and Network', link: '/universities/1' },
+  { modCode: 'CS112', modName: 'OS and Network', link: '/universities/1' },
+  { modCode: 'CS132', modName: 'OS and Network', link: '/universities/1' },
+  { modCode: 'CS442', modName: 'OS and Network', link: '/universities/1' },
+  { modCode: 'CS372', modName: 'OS and Network', link: '/universities/1' },
 
 ];
