@@ -2,25 +2,26 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
+import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { Avatar } from '@mui/material';
 
-import { Image, Transformation } from 'cloudinary-react'
+import { Image } from 'cloudinary-react'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { makeStyles } from "@material-ui/core/styles";
 import ModuleSearch from '../components/searchBar/ModuleSearch';
 
 import studybanner from '../assets/studybanner.jpg'
-import { HomeSharp } from '@mui/icons-material';
 import HowTo from '../components/home/HowTo';
+import Footer from '../components/Footer';
 // /Volumes/KongV2/Startup_RevEd/Dev/RevEd/app/
 
 const theme = createTheme();
@@ -42,10 +43,28 @@ const useStyles = makeStyles({
   container: {
     backgroundColor: 'black',
   },
+  button: {
+    border: '2px solid grey'
+  },
+  img: {
+    // borderRadius: '50%',
+    objectFit: 'fill',
+    cursor: 'pointer',
+    height: 150,
+    width: '100%',
+    margin: 'auto',
+    padding: 'auto',
+    textAlign: "center",
+    // border: '1px solid black'
+  },
+  item: {
+    // border: '1px solid black'
+    padding: '1em'
+  },
   banner: {
     opacity: 0.7,
     width: '100%',
-    height: '350px',
+    height: '300px',
     objectFit: 'cover'
   },
   searchbar: {
@@ -110,38 +129,24 @@ const HomePage = () => {
       .catch(res => console.log(res))
   }, [reviewcounts.length])
 
-  // console.log(reviewcounts["Warwick University"])
   const Test = ["https://www.timeshighereducation.com/sites/default/files/styles/the_breaking_news_image_style/public/Pictures/web/y/d/t/the-university-of-warwick-logo-2015.jpg?itok=VQ2a0l-F", "https://www.universitytranscriptions.co.uk/wp-content/uploads/University-of-Bristol.png"]
 
-  // console.log(universities[0], "test")
-  // console.log(options2, "op2")
-  console.log('hi')
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme} >
-      {/* <CssBaseline/> */}
 
       <main>
         <>
-        <section className={classes.container}>
-        
-          <img className={classes.banner} src={studybanner} />
-          
-        </section>
-        {/* <Container maxWidth="sm"> */}
-            <ModuleSearch className={classes.searchbar}/>
-          {/* </Container> */}
-          </>
-        
-
-
-
+          <section className={classes.container}>
+            <img className={classes.banner} src={studybanner} />
+          </section>
+          <ModuleSearch className={classes.searchbar}/>
+        </>
         {/* Hero unit */}
         <Box
           sx={{
             pt: 8,
             pb: 2,
-            bgcolor: 'text.disabled'
           }}
         >
           <Container maxWidth="sm" >
@@ -156,36 +161,49 @@ const HomePage = () => {
             </Typography>
           </Container>
         </Box>
-        <Box sx={{ bgcolor: 'text.disabled' }} >
+        <Box >
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
-          <Grid container spacing={4}>
+          <Grid 
+          container 
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={0}>
 
             {universities.slice(0, 6).map((card) => (
-              <Grid item key={card.id} xs={12} sm={6} md={4}>
-                {/* <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}> */}
-                  {/* <CardMedia component="img" alt="green iguana" height="140" image= {Test[Math.floor(Math.random()*Test.length)]} /> */}
-                  <Avatar sx={{ width: 200, height: 200 }} style={{ margin: "0 auto" }}>
-                   <Image cloudName="le-wagon-tokyo" publicId ={`https://res.cloudinary.com/le-wagon-tokyo/image/upload/v1633890329/development/${card.photo_key}`} style={{ width: 200 }}>
-                   </Image>
-                 </Avatar>
-                  <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography gutterBottom variant="h5" component="h2" style={{ textAlign: "center", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
+              <Grid 
+              className={classes.item} item key={card.id} xs={12} sm={6} md={4}>
+                  {/* <Avatar sx={{ width: 200, height: 200 }} style={{ margin: "0 auto" }}> */}
+                  <a href={`/universities/${card.id}`} style={{ textDecoration: 'none' }}>
+                  <Card sx={{ width: '100%' }}>
+                    <CardActionArea>
+                      <Image 
+                    className={classes.img}
+                    cloudName="le-wagon-tokyo" 
+                    publicId ={`https://res.cloudinary.com/le-wagon-tokyo/image/upload/v1633890329/development/${card.photo_key}`}
+                    />
+                      <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2" style={{ textAlign: "center", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
                       {card.name}
                   </Typography>
                   <Typography style={{ textAlign: "center" }}>
                       Reviews: {reviewcounts[card.id]}
                     </Typography>
-                  </CardContent>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                  </a>
+                  {/* <CardContent sx={{ flexGrow: 1, justifyContent: 'center' }}> */}
+                  
+                 {/* </Avatar> */}
+                  
+                  {/* </CardContent>
                 <CardActions>
                   <Button size="small" style={{ margin: "0 auto" }}>
                     <a href={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> View </a>
-                    {/* <Link to={`/universities/${card.id}`} style={{ textDecoration: 'none' }}> View </Link> */}
                   </Button>
-
-                    {/* <Link href="/universities/1" underline="none">View</Link> */}
-                    {/* <Button size="small">Edit</Button> */}
-                  </CardActions>
+                  </CardActions> */}
                 {/* </Card> */}
               </Grid>
             ))}
@@ -196,8 +214,7 @@ const HomePage = () => {
               spacing={2}
               justifyContent="center"
             >
-              <Button variant="contained">See all universities</Button>
-              <Button variant="outlined">Secondary action</Button>
+              <Button className={classes.button} variant="outlined">See all universities</Button>
             </Stack>
         </Container>
         </Box>
@@ -205,21 +222,9 @@ const HomePage = () => {
       <Box>
         <HowTo />
       </Box>
-      {/* Footer */}
-      <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-      </Box>
-      {/* End footer */}
+              
+      {/* Footer         */}
+      <Footer/>
      
     </ThemeProvider>
   );
