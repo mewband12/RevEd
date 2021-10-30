@@ -9,6 +9,15 @@ const useStyles = makeStyles({
   button: {
     width: '100%',
     paddingLeft: '15px'
+  },
+  searchbar: {
+    zIndex: 100,
+    width: '30%',
+    position: 'absolute',
+    borderRadius: 10,
+    left: '30%',
+    top: '20%',
+    backgroundColor: 'white'
   }
 })
 
@@ -19,6 +28,7 @@ export default function ModuleSearch() {
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
+        className={classes.searchbar}
         freeSolo
         // value={}
         id="free-solo-2-demo"
@@ -41,7 +51,7 @@ export default function ModuleSearch() {
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Search input"
+            label="Search for modules..."
             InputProps={{
               ...params.InputProps,
               type: 'search',
