@@ -37,11 +37,23 @@ first_country = Country.first
 UNIVERSITIES = ["Warwick University", "Bristol", "Imperial College London", "Cambridge University", "Oxford University", "Birmingham University", "University of Exeter"]
 
 
+photolinks = ["https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/4/24/1429871252768/University-of-Warwick-new-007.jpg?width=300&quality=45&auto=format&fit=max&dpr=2&s=65dbfa7cff617bdfda8b1703649711e1", "https://sciencecouncil.org/web/wp-content/uploads/2019/03/University-of-Bristol-logo-Employer-Champion-profile-2.jpg"]
+
 UNIVERSITIES.each do |uni|
 university = University.new name: uni,
                             country: first_country
+
+file = URI.open(photolinks.sample)
+university.photo.attach(io: file, filename: 'uni1.png', content_type: 'image/png')
+university.photo_key = university.photo.key
 university.save!
 end
+
+
+# Upload and put images key for each university
+
+
+
 
 ## Lets start with Warwick University
 
