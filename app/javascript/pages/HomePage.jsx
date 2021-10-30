@@ -79,6 +79,7 @@ const useStyles = makeStyles({
 const HomePage = () => {
   const [universities, setUniversities] = useState([]);
   const [reviewcounts, setReviewcounts] = useState([]);
+  const [checkenv, setcheckenv] = useState([]);
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
@@ -129,6 +130,23 @@ const HomePage = () => {
       .catch(res => console.log(res))
   }, [reviewcounts.length])
 
+  useEffect(() => {
+    axios.get("/api/v1/checkenv")
+      .then(res => {
+        setcheckenv(res.data)
+        // console.log(res)
+      })
+      .catch(res => console.log(res))
+  }, [checkenv.length])
+
+  if (checkenv) {
+    var environment = "development"
+  } else {
+    var environment = "production"
+  }
+
+  console.log(environment)
+
   const Test = ["https://www.timeshighereducation.com/sites/default/files/styles/the_breaking_news_image_style/public/Pictures/web/y/d/t/the-university-of-warwick-logo-2015.jpg?itok=VQ2a0l-F", "https://www.universitytranscriptions.co.uk/wp-content/uploads/University-of-Bristol.png"]
 
   const classes = useStyles();
@@ -164,24 +182,24 @@ const HomePage = () => {
         <Box >
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
-          <Grid 
-          container 
+          <Grid
+          container
           direction="row"
           justifyContent="center"
           alignItems="center"
           spacing={0}>
 
             {universities.slice(0, 6).map((card) => (
-              <Grid 
+              <Grid
               className={classes.item} item key={card.id} xs={12} sm={6} md={4}>
                   {/* <Avatar sx={{ width: 200, height: 200 }} style={{ margin: "0 auto" }}> */}
                   <a href={`/universities/${card.id}`} style={{ textDecoration: 'none' }}>
                   <Card sx={{ width: '100%' }}>
                     <CardActionArea>
-                      <Image 
+                      <Image
                     className={classes.img}
-                    cloudName="le-wagon-tokyo" 
-                    publicId ={`https://res.cloudinary.com/le-wagon-tokyo/image/upload/v1633890329/development/${card.photo_key}`}
+                    cloudName="le-wagon-tokyo"
+                    publicId ={`https://res.cloudinary.com/le-wagon-tokyo/image/upload/v1633890329/${environment}/${card.photo_key}`}
                     />
                       <CardContent>
                       <Typography gutterBottom variant="h5" component="h2" style={{ textAlign: "center", whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>
@@ -195,9 +213,9 @@ const HomePage = () => {
                   </Card>
                   </a>
                   {/* <CardContent sx={{ flexGrow: 1, justifyContent: 'center' }}> */}
-                  
+
                  {/* </Avatar> */}
-                  
+
                   {/* </CardContent>
                 <CardActions>
                   <Button size="small" style={{ margin: "0 auto" }}>
@@ -222,10 +240,10 @@ const HomePage = () => {
       <Box>
         <HowTo />
       </Box>
-              
+
       {/* Footer         */}
       <Footer/>
-     
+
     </ThemeProvider>
   );
 }

@@ -36,6 +36,7 @@ Rails.application.routes.draw do
         resources :reviewscomment, only: [:index]
         resources :reviewsummary1, only: [:index]
       end
+      resources :checkenv, only: [:index]
     end
   end
 
